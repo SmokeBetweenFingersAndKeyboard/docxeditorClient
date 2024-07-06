@@ -1,0 +1,32 @@
+<body>
+  <!-- p>Random joke: {{ joke }}</--p>
+  {{ console.log(joke) }}
+  <p> Order: {{order.name}} </p -->
+  <div class="order">
+    <label for="name">Order name: </label>
+    <input id="name" [(ngModel)]="order.name" placeholder="name">
+    <label for="name">Дата документа: </label>
+    <input id="date" [(ngModel)]="order.date" placeholder="date">
+    <label for="name">Дата операции: </label>
+    <input id="dateOperation" [(ngModel)]="order.dateOperation" placeholder="dateOperation">
+    <label for="name">Грузополучатель: </label>
+    <input id="recipient" [(ngModel)]="order.recipient" placeholder="recipient">
+    <label for="name">Ответственный: </label>
+    <input id="Responsible" [(ngModel)]="order.Responsible" placeholder="Responsible">
+    <label for="name">Позиция товара: </label>
+    <input id="ProductPosition" [(ngModel)]="order.ProductPosition" placeholder="ProductPosition">
+    <label for="name">Единицы измерения: </label>
+    <input id="Units" [(ngModel)]="order.Units" placeholder="Units">
+    <label for="name">Выдать/принять, Отпущено/принято: </label>
+    <input id="Value" [(ngModel)]="order.Value" placeholder="Value">
+    <label for="name"> Цена: </label>
+    <input id="ProductPrice" [(ngModel)]="order.ProductPrice" placeholder="ProductPrice">
+    <label for="name">Сумма: </label>
+    <input id="SummaryPrice" [(ngModel)]="order.SummaryPrice" placeholder="SummaryPrice">
+    <label for="name">Транскрипця: </label>
+    <input id="SmPriceTramsctription" [(ngModel)]="order.SmPriceTramsctription" placeholder="SmPriceTramsctription">
+    <button>Create invoice</button>
+  </div>
+</body>
+
+

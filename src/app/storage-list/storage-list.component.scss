@@ -1,0 +1,13 @@
+body{
+
+}
+.order{
+  display: flex !important;
+  flex-direction: column;
+  max-width: 25%;
+}
+input{
+  border: 0px;
+  border-bottom: 1px solid black;
+  margin-bottom: 8px;
+}
