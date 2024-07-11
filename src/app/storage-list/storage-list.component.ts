@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { NgFor } from "@angular/common"
-import {HttpClient} from "@angular/common/http";
+import { Component, OnInit} from '@angular/core';
 import { GetListDataService } from "../services/get-list-data.service"
+
 @Component({
 
   selector: 'app-storage-list',
@@ -12,9 +11,15 @@ import { GetListDataService } from "../services/get-list-data.service"
 
 
 export class StorageListComponent {
-  constructor(private getData: GetListDataService) {
+  dataFromDB = new Array<any>();
+  constructor(private getDataService: GetListDataService){}
+  ngOnInit(): void {
+    this.getDataService.getProducts().subscribe((data) => {
+      this.dataFromDB = data;
+      console.log(data);
+    })
   }
-  //joke = this.getData.getJoke();
+
 
   console = console;
   order = {

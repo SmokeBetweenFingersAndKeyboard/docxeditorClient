@@ -1,7 +1,7 @@
-import {Injectable, NgModule} from '@angular/core';
-import {Component} from "@angular/core";
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import { Observable } from "rxjs"
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,9 +9,11 @@ import {Observable} from "rxjs";
 
 export class GetListDataService {
 
-  url = 'http://localhost:4300/';
-  constructor(private http: HttpClient) {
-    console.log(this.http.get('https://jsonplaceholder.typicode.com/users'));
+  constructor(private http: HttpClient) {}
+  getProducts():Observable<any>{
+    const url = 'http://localhost:4300';
+    return this.http.get<any>(url);
   }
+
 }
 

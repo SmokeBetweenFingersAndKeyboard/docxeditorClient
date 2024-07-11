@@ -1,8 +1,10 @@
 <body>
-  <!-- p>Random joke: {{ joke }}</--p>
-  {{ console.log(joke) }}
-  <p> Order: {{order.name}} </p -->
+  <p > Order: </p>
+
   <div class="order">
+  <select  id="cars" name="cars">
+    <option *ngFor="let products of dataFromDB" [value]=products[0]>{{ products[0] }}</option>
+  </select>
     <label for="name">Order name: </label>
     <input id="name" [(ngModel)]="order.name" placeholder="name">
     <label for="name">Дата документа: </label>
