@@ -11,20 +11,15 @@ import { GetListDataService } from "../services/get-list-data.service"
 
 
 export class StorageListComponent {
+  currentDate = new Date;
+  //invoiceDate = this.currentDate.getFullYear() + "-" + this.currentDate.getMonth() + "-" + this.currentDate.getDate();
+  invoiceDate = "0000-00-00"
+
   dataFromDB = new Array<any>();
-  constructor(private getDataService: GetListDataService){}
-  ngOnInit(): void {
-    this.getDataService.getProducts().subscribe((data) => {
-      this.dataFromDB = data;
-      console.log(data);
-    })
-  }
-
-
-  console = console;
+  productFromDB = new Array<any>();
   order = {
-    date: "date",
-    dateOperation: "dateOperation",
+    date: "",
+    dateOperation: "",
     recipient: "",
     Responsible: "",
     ProductPosition: "",
@@ -34,9 +29,36 @@ export class StorageListComponent {
     SummaryPrice: "",
     SmPriceTramsctription: "",
 
-    id: 1, name: 'Windstorm'};
-}
+    id: 1, name: ""};
 
+  constructor(private getDataService: GetListDataService){}
+  ngOnInit(): void {
+    this.getDataService.getProducts().subscribe((data) => {
+      this.dataFromDB = data;
+      console.log(this.dataFromDB[0]);
+      console.log(typeof(this.dataFromDB));
+      let i = 0;
+      for(let item of this.dataFromDB){
+        this.productFromDB[i] = item;
+        i++;
+      }
+      console.log(this.productFromDB);
+    })
+  }
+
+
+
+  product = new Array();
+
+  onSelected(value: string): void {
+    this.product = this.productFromDB.filter((item) => item == value);
+    this.order.date = this.invoiceDate;
+    console.log(this.order.ProductPosition = this.product[0][1] );
+  }
+
+  console = console;
+
+}
 /*
 1. Дата документа: что бы подтягивалось с системы в момент формирования (с возможностью дописать вручную если задним числом)
 2. Дата операции: что бы подтягивалось с системы в момент формирования (с возможностью дописать вручную если задним числом)
@@ -50,5 +72,25 @@ export class StorageListComponent {
 10. Залупа (да) в штуках: сумма 7го пункта по каждой позиции (2 лопаты + 2 топора + 2 мешков = 6 (шесть) штук)
 11. Всего: сумма сумм, цифра + транскрипция словами гривен и копеек тоже
 12. Подпись ответственного: что бы подтягивалось из шаблона, но лучше что бы вытягивалось из 4го пункта только фамилия КАПСОМ и перед ним инициалы только имя (О. БОБИК) + его звание в начале строки (тоже из 4го пункта)
+
+export class StorageListComponent {
+  dataFromDB = new Array<any>();
+  productsFromDB = new Array<any>();
+  constructor(private getDataService: GetListDataService){}
+  ngOnInit(): void {
+    this.getDataService.getProducts().subscribe((data) => {
+      this.dataFromDB = data;
+      for(let item of this.dataFromDB){
+        this.productsFromDB[item] = this.dataFromDB[item];
+      }
+      console.log(data);
+      console.log(typeof(this.productsFromDB));
+    })
+  }
+  product = new Array();
+  onSelected(value: string): void {
+    this.product = Object.keys(this.productsFromDB.filter((item) => item == value)[0]);
+    console.log(value);
+  }
 
  */

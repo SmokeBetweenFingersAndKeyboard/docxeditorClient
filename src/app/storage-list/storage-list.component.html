@@ -2,32 +2,35 @@
   <p > Order: </p>
 
   <div class="order">
-  <select  id="cars" name="cars">
-    <option *ngFor="let products of dataFromDB" [value]=products[0]>{{ products[0] }}</option>
+  <p></p>
+  <select  #products (change)="onSelected(products.value)">
+    <option *ngFor="let item of dataFromDB" [value]=item>{{ item[1] }}</option>
   </select>
-    <label for="name">Order name: </label>
-    <input id="name" [(ngModel)]="order.name" placeholder="name">
-    <label for="name">Дата документа: </label>
-    <input id="date" [(ngModel)]="order.date" placeholder="date">
-    <label for="name">Дата операции: </label>
-    <input id="dateOperation" [(ngModel)]="order.dateOperation" placeholder="dateOperation">
-    <label for="name">Грузополучатель: </label>
-    <input id="recipient" [(ngModel)]="order.recipient" placeholder="recipient">
-    <label for="name">Ответственный: </label>
-    <input id="Responsible" [(ngModel)]="order.Responsible" placeholder="Responsible">
-    <label for="name">Позиция товара: </label>
-    <input id="ProductPosition" [(ngModel)]="order.ProductPosition" placeholder="ProductPosition">
-    <label for="name">Единицы измерения: </label>
-    <input id="Units" [(ngModel)]="order.Units" placeholder="Units">
-    <label for="name">Выдать/принять, Отпущено/принято: </label>
-    <input id="Value" [(ngModel)]="order.Value" placeholder="Value">
-    <label for="name"> Цена: </label>
-    <input id="ProductPrice" [(ngModel)]="order.ProductPrice" placeholder="ProductPrice">
-    <label for="name">Сумма: </label>
-    <input id="SummaryPrice" [(ngModel)]="order.SummaryPrice" placeholder="SummaryPrice">
-    <label for="name">Транскрипця: </label>
-    <input id="SmPriceTramsctription" [(ngModel)]="order.SmPriceTramsctription" placeholder="SmPriceTramsctription">
-    <button>Create invoice</button>
+    <ng-template *ngIf="order.name != ''">
+      <label for="name">Order name: </label>
+      <input id="name" [(ngModel)]="order.name" [placeholder]="order.name">
+      <label for="name">Дата документа:</label>
+      <input type="date" name="input"[(ngModel)]="order.date"/>
+      <label for="name">Дата операции:</label>
+      <input type="date" name="input" [(ngModel)]="order.dateOperation"/>
+      <label for="name">Грузополучатель: </label>
+      <input id="recipient" [(ngModel)]="order.recipient" placeholder="recipient">
+      <label for="name">Ответственный: </label>
+      <input id="Responsible" [(ngModel)]="order.Responsible" placeholder="Responsible">
+      <label for="name">Позиция товара: </label>
+      <input id="ProductPosition" [(ngModel)]="order.ProductPosition" placeholder="ProductPosition">
+      <label for="name">Единицы измерения: </label>
+      <input id="Units" [(ngModel)]="order.Units" placeholder="Units">
+      <label for="name">Выдать/принять, Отпущено/принято: </label>
+      <input id="Value" [(ngModel)]="order.Value" placeholder="Value">
+      <label for="name"> Цена: </label>
+      <input id="ProductPrice" [(ngModel)]="order.ProductPrice" placeholder="ProductPrice">
+      <label for="name">Сумма: </label>
+      <input id="SummaryPrice" [(ngModel)]="order.SummaryPrice" placeholder="SummaryPrice">
+      <label for="name">Транскрипця: </label>
+      <input id="SmPriceTramsctription" [(ngModel)]="order.SmPriceTramsctription" placeholder="SmPriceTramsctription">
+      <button>Create invoice</button>
+      </ng-template>
   </div>
 </body>
 
